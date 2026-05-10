@@ -35,6 +35,18 @@ function deleteBook(id) {
     showAllBooks(Library);
 }
 
+function updateReadStatus(id){
+    let updatedLibrary = Library.map((book) => {
+        if (id === book.id) {
+            book.read = !book.read;
+        }
+        return book;
+    });
+    localStorage.setItem("books", JSON.stringify(updatedLibrary));
+    Library = updatedLibrary;
+    showAllBooks(Library);
+}
+
 function showAllBooks(arr) {
     booksContainer.replaceChildren();
 
@@ -49,12 +61,15 @@ function showAllBooks(arr) {
         const author = document.createElement("h2");
         const pages = document.createElement("p");
         const synopsis = document.createElement("p");
+        const buttonWrapper = document.createElement("div");
+        const updateReadStatusButton = document.createElement("button");
         const deleteButton = document.createElement("button");
 
         title.textContent = book.title;
         author.textContent = book.author;
         pages.textContent = book.pages;
         synopsis.textContent = book.synopsis;
+        updateReadStatusButton.textContent = book.read ? "Mark as unread" : "Mark as read";
         deleteButton.textContent = "Delete";
         deleteButton.setAttribute("data-id", `${book.id}`);
 
@@ -62,13 +77,20 @@ function showAllBooks(arr) {
         card.appendChild(author);
         card.appendChild(pages);
         card.appendChild(synopsis);
-        card.appendChild(deleteButton);
+        card.appendChild(buttonWrapper);
+
+        buttonWrapper.appendChild(updateReadStatusButton);
+        buttonWrapper.appendChild(deleteButton);
 
         booksContainer.appendChild(card);
 
         deleteButton.addEventListener("click", (e) => {
             deleteBook(book.id);
         });
+
+        updateReadStatusButton.addEventListener("click", (e) => {
+            updateReadStatus(book.id);
+        })
     });
 }
 
