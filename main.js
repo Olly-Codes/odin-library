@@ -128,6 +128,12 @@ addBookButton.addEventListener("click", (e) => {
 
     addBook(title, author, pages, synopsis, read);
     statusMessage.textContent = "Book Added";
+    statusMessage.style.visibility = "visible";
+
+    setTimeout(() => {
+        statusMessage.style.visibility = "hidden";
+    }, 2000);
+
     e.target.closest("form").reset();
 });
 
