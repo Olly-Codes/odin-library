@@ -4,21 +4,24 @@ const bookTitle = document.querySelector("#title");
 const bookAuthor = document.querySelector("#author");
 const bookPages = document.querySelector("#pages");
 const bookSynopsis = document.querySelector("#synopsis");
+const readStatus = document.querySelector("#read");
 const statusMessage = document.querySelector("#status");
 
 const Library = JSON.parse(localStorage.getItem("books")) || [];
 
-function Book(id, title, author, pages, synopsis) {
+function Book(id, title, author, pages, synopsis, read) {
     this.id = id;
     this.title = title;
     this.author = author;
-    this.pages = `${pages} pages`;
+    this.pages = `${pages}`;
     this.synopsis = synopsis;
+    this.read = read;
 }
 
-function addBook(title, author, pages, synopsis){
+function addBook(title, author, pages, synopsis, readStatus){
     const bookId = crypto.randomUUID();
-    const book = new Book(bookId, title, author, pages, synopsis);
+    let read = readStatus.checked ? true : false;
+    const book = new Book(bookId, title, author, pages, synopsis, read);
 
     Library.push(book);
     localStorage.setItem("books", JSON.stringify(Library))
@@ -58,8 +61,9 @@ addBookButton.addEventListener("click", (e) => {
     const author = bookAuthor.value;
     const pages = bookPages.value;
     const synopsis = bookSynopsis.value;
+    const read = readStatus;
 
-    addBook(title, author, pages, synopsis);
+    addBook(title, author, pages, synopsis, read);
     statusMessage.textContent = "Book Added";
     e.target.closest("form").reset();
 })
