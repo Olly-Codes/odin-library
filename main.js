@@ -80,7 +80,7 @@ function showAllBooks(arr) {
 
         title.textContent = book.title;
         author.textContent = book.author;
-        pages.textContent = book.pages;
+        pages.textContent = `${book.pages} pages`;
         synopsis.textContent = book.synopsis;
         updateReadStatusButton.textContent = book.read ? "Mark as unread" : "Mark as read";
         deleteButton.textContent = "Delete";
