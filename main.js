@@ -6,6 +6,7 @@ const bookPages = document.querySelector("#pages");
 const bookSynopsis = document.querySelector("#synopsis");
 const readStatus = document.querySelector("#read");
 const statusMessage = document.querySelector("#status");
+const bookForm = document.querySelector("#book-form");
 
 const libraryData = JSON.parse(localStorage.getItem("books")) || [];
 let library = libraryData.map((book) => {
@@ -121,7 +122,7 @@ function showAllBooks(arr) {
     });
 }
 
-addBookButton.addEventListener("click", (e) => {
+bookForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const title = bookTitle.value;
