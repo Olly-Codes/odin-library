@@ -7,7 +7,17 @@ const bookSynopsis = document.querySelector("#synopsis");
 const readStatus = document.querySelector("#read");
 const statusMessage = document.querySelector("#status");
 
-let Library = JSON.parse(localStorage.getItem("books")) || [];
+const libraryData = JSON.parse(localStorage.getItem("books")) || [];
+let Library = libraryData.map((book) => {
+    return new Book(
+        book.id,
+        book.title,
+        book.author,
+        book.pages,
+        book.synopsis,
+        book.read
+    );
+});
 
 function Book(id, title, author, pages, synopsis, read) {
     this.id = id;
@@ -16,6 +26,10 @@ function Book(id, title, author, pages, synopsis, read) {
     this.pages = `${pages}`;
     this.synopsis = synopsis;
     this.read = read;
+}
+
+Book.prototype.toggleReadStatus = function () {
+    this.read = !this.read;
 }
 
 function addBook(title, author, pages, synopsis, readStatus){
@@ -36,14 +50,13 @@ function deleteBook(id) {
 }
 
 function updateReadStatus(id){
-    let updatedLibrary = Library.map((book) => {
+    Library.forEach((book) => {
         if (id === book.id) {
-            book.read = !book.read;
+            book.toggleReadStatus();
+            console.log(book.read)
         }
-        return book;
     });
-    localStorage.setItem("books", JSON.stringify(updatedLibrary));
-    Library = updatedLibrary;
+    localStorage.setItem("books", JSON.stringify(Library));
     showAllBooks(Library);
 }
 
@@ -107,3 +120,5 @@ addBookButton.addEventListener("click", (e) => {
     statusMessage.textContent = "Book Added";
     e.target.closest("form").reset();
 });
+
+showAllBooks(Library);
