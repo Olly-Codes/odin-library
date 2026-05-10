@@ -64,7 +64,10 @@ function showAllBooks(arr) {
     booksContainer.replaceChildren();
 
     if(arr.length === 0) {
-        console.log("No books added...");
+        const empty = document.createElement("p");
+        empty.classList.add("empty-message");
+        empty.textContent = "No Books Added yet...";
+        booksContainer.appendChild(empty);
         return;
     }
 
