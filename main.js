@@ -1,4 +1,10 @@
 const container = document.querySelector("#container");
+const addBookButton = document.querySelector("#add-btn");
+const bookTitle = document.querySelector("#title");
+const bookAuthor = document.querySelector("#author");
+const bookPages = document.querySelector("#pages");
+const bookSynopsis = document.querySelector("#synopsis");
+const statusMessage = document.querySelector("#status");
 
 const Library = JSON.parse(localStorage.getItem("books")) || [];
 
@@ -44,3 +50,16 @@ function showAllBooks(arr) {
         container.appendChild(card);
     });
 }
+
+addBookButton.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const title = bookTitle.value;
+    const author = bookAuthor.value;
+    const pages = bookPages.value;
+    const synopsis = bookSynopsis.value;
+
+    addBook(title, author, pages, synopsis);
+    statusMessage.textContent = "Book Added";
+    e.target.closest("form").reset();
+})
