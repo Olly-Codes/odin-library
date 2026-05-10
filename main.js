@@ -70,13 +70,20 @@ function showAllBooks(arr) {
 
     arr.forEach(book => {
         const card = document.createElement("div");
-        const title = document.createElement("h1");
-        const author = document.createElement("h2");
+        const title = document.createElement("h2");
+        const author = document.createElement("h3");
         const pages = document.createElement("p");
         const synopsis = document.createElement("p");
         const buttonWrapper = document.createElement("div");
         const updateReadStatusButton = document.createElement("button");
         const deleteButton = document.createElement("button");
+
+        card.classList.add("card");
+        title.classList.add("title");
+        author.classList.add("author");
+        pages.classList.add("pages");
+        buttonWrapper.classList.add("button-wrapper");
+        synopsis.classList.add("synopsis");
 
         title.textContent = book.title;
         author.textContent = book.author;
