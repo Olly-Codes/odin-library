@@ -8,7 +8,7 @@ const readStatus = document.querySelector("#read");
 const statusMessage = document.querySelector("#status");
 
 const libraryData = JSON.parse(localStorage.getItem("books")) || [];
-let Library = libraryData.map((book) => {
+let library = libraryData.map((book) => {
     return new Book(
         book.id,
         book.title,
@@ -37,27 +37,27 @@ function addBook(title, author, pages, synopsis, readStatus){
     let read = readStatus.checked ? true : false;
     const book = new Book(bookId, title, author, pages, synopsis, read);
 
-    Library.push(book);
-    localStorage.setItem("books", JSON.stringify(Library))
-    showAllBooks(Library);
+    library.push(book);
+    saveAndShowBooks();
 }
 
 function deleteBook(id) {
-    let newLibrary = Library.filter((book) => book.id !== id);
-    localStorage.setItem("books", JSON.stringify(newLibrary));
-    Library = newLibrary;
-    showAllBooks(Library);
+    library = library.filter((book) => book.id !== id);
+    saveAndShowBooks();
 }
 
 function updateReadStatus(id){
-    Library.forEach((book) => {
+    library.forEach((book) => {
         if (id === book.id) {
             book.toggleReadStatus();
-            console.log(book.read)
         }
     });
-    localStorage.setItem("books", JSON.stringify(Library));
-    showAllBooks(Library);
+    saveAndShowBooks();
+}
+
+function saveAndShowBooks(){
+    localStorage.setItem("books", JSON.stringify(library));
+    showAllBooks(library);
 }
 
 function showAllBooks(arr) {
@@ -121,4 +121,4 @@ addBookButton.addEventListener("click", (e) => {
     e.target.closest("form").reset();
 });
 
-showAllBooks(Library);
+showAllBooks(library);
