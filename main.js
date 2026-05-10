@@ -1,0 +1,15 @@
+const Library = [];
+
+function Book(id, title, author, pages, synopsis) {
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.synopsis = synopsis;
+}
+
+function addBook(title, author, pages, synopsis){
+    const bookId = crypto.randomUUID();
+    const book = new Book(bookId, title, author, pages, synopsis);
+    Library.push(book);
+}
