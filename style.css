@@ -7,6 +7,10 @@
 }
 
 :root {
+    --accent: #c9973a;
+    --accent-dim: rgba(201, 151, 58, 0.15);
+    --accent-border: rgba(201, 151, 58, 0.3);
+
     --primary-bg: #141414;
     --secondary-bg: #0f0f0f;
 
@@ -23,6 +27,7 @@
     --btn-hover: rgba(255,255,255,0.15);
 
     --success-text: #7eb87e;
+    --success-text-bg: rgba(126, 184, 126, 0.1);
     --label-text: #888;
 
     --input-bg: rgba(255,255,255,0.05);
@@ -60,6 +65,7 @@
     position: relative;
     background-color: var(--card-bg);
     transition: 0.2s ease all;
+    border-top: 2px solid var(--accent);
 }
 
 .card:hover {
@@ -79,6 +85,7 @@
     font-size: 0.95rem;
     font-weight: 700;
     color: var(--primary-text);
+    color: var(--accent);
 }
 
 .card .author {
@@ -124,6 +131,15 @@
     transition: 0.15s ease all;
 }
 
+.card .button-wrapper button:first-child {
+    border-color: var(--accent-border);
+    color: var(--accent);
+}
+
+.card .button-wrapper button:first-child:hover {
+    background: var(--accent-dim);
+}
+
 .card .button-wrapper button:hover {
     background: var(--btn-hover);
 }
@@ -148,9 +164,13 @@
 
 #status {
     font-size: 0.75rem;
+    background: var(--success-text-bg);
     color: var(--success-text);
     min-height: 1rem;
     letter-spacing: 0.05em;
+    border-radius: 4px;
+    padding: 6px 10px;
+    visibility: hidden;
 }
 
 #book-form label {
@@ -171,6 +191,11 @@
     font-size: 0.82rem;
     outline: none;
     transition: 0.2s ease all;
+}
+
+#book-form input[type="text"]:focus, #book-form textarea:focus {
+    border-color: var(--accent-border);
+    background: var(--accent-dim);
 }
 
 #book-form textarea {
@@ -204,23 +229,24 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 0.65rem;
-    color: #f0f0f0;
+    color: var(--accent);
 }
 
 #add-btn {
     margin-top: 6px;
     padding: 10px;
-    background: var(--btn-bg);
-    border: 1px solid var(--btn-border);
+    background: var(--accent-dim);
+    border-color: var(--accent-border);
     border-radius: 4px;
-    color: #f0f0f0;
+    color: var(--accent);
     font-size: 0.8rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: 0.2s ease all;
+    transition: 0.2s ease all;  
 }
 
 #add-btn:hover {
-    background: var(--btn-hover);
+    background: rgba(201, 151, 58, 0.25);
+    border-color: var(--accent);
 }
