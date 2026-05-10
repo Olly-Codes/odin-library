@@ -6,6 +6,29 @@
     box-sizing: border-box;
 }
 
+:root {
+    --primary-bg: #141414;
+    --secondary-bg: #0f0f0f;
+
+    --card-bg: #1a1a1a;
+    --card-info-bg: #0a0a0ad1;
+
+    --primary-text: #f0f0f0;
+    --secondary-text: #999;
+    --sub-text: #666;
+    --normal-text: #bbb;
+
+    --btn-bg: rgba(255,255,255,0.07);
+    --btn-border: rgba(255, 255, 255, 0.149);
+    --btn-hover: rgba(255,255,255,0.15);
+
+    --success-text: #7eb87e;
+    --label-text: #888;
+
+    --input-bg: rgba(255,255,255,0.05);
+    --input-border: rgba(255,255,255,0.1);
+}
+
 /* ----- MAIN CONTAINER */
 #container {
     width: 100%;
@@ -16,16 +39,188 @@
 }
 
 /* ----- BOOKS WRAPPER */
-
 #books-wrapper {
+    width: 100%;
+    padding: 40px 0 40px 40px;
     grid-column-start: 1;
     grid-column-end: 6;
-    background-color: brown;
+    background-color: var(--primary-bg);
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    overflow-y: scroll;
+}
+
+.card {
+    flex: 0 1 220px;
+    height: 320px;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--card-bg);
+    transition: 0.2s ease all;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 14px;
+    background: var(--card-info-bg);
+}
+
+.card .title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--primary-text);
+}
+
+.card .author {
+    font-size: 0.75rem;
+    color: var(--secondary-text);
+    margin-bottom: 8px;
+}
+
+.card .pages {
+    font-size: 0.7rem;
+    color: var(--sub-text);
+    margin-bottom: 8px;
+}
+
+.card .synopsis {
+    font-size: 0.75rem;
+    color: var(--normal-text);
+    line-height: 1.4;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.3s ease all;
+}
+
+.card:hover .synopsis {
+    max-height: 80px;
+}
+
+.card .button-wrapper {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.card .button-wrapper button {
+    flex: 1;
+    padding: 5px 0;
+    font-size: 0.7rem;
+    border: 1px solid var(--btn-border);
+    border-radius: 4px;
+    background: var(--btn-bg);
+    color: var(--secondary-text);
+    cursor: pointer;
+    transition: 0.15s ease all;
+}
+
+.card .button-wrapper button:hover {
+    background: var(--btn-hover);
 }
 
 /* ----- FORM WRAPPER */
 #form-wrapper {
     grid-column-start: 6;
     grid-column-end: 8;
-    background-color: beige;
+    background-color: var(--secondary-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 30px;
+}
+
+#book-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#status {
+    font-size: 0.75rem;
+    color: var(--success-text);
+    min-height: 1rem;
+    letter-spacing: 0.05em;
+}
+
+#book-form label {
+    font-size: 0.7rem;
+    color: var(--label-text);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: -4px;
+}
+
+#book-form input[type="text"], #book-form textarea {
+    width: 100%;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    padding: 8px 10px;
+    color: var(--secondary-text);
+    font-size: 0.82rem;
+    outline: none;
+    transition: 0.2s ease all;
+}
+
+#book-form textarea {
+    resize: none;
+    height: 80px;
+    line-height: 1.5;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#book-form input[type="checkbox"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--input-border);
+    border-radius: 3px;
+    background: var(--input-bg);
+    cursor: pointer;
+    position: relative;
+    transition: 0.15s ease all;
+}
+
+#book-form input[type="checkbox"]:checked::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.65rem;
+    color: #f0f0f0;
+}
+
+#add-btn {
+    margin-top: 6px;
+    padding: 10px;
+    background: var(--btn-bg);
+    border: 1px solid var(--btn-border);
+    border-radius: 4px;
+    color: #f0f0f0;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.2s ease all;
+}
+
+#add-btn:hover {
+    background: var(--btn-hover);
 }

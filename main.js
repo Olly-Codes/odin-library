@@ -70,6 +70,7 @@ function showAllBooks(arr) {
 
     arr.forEach(book => {
         const card = document.createElement("div");
+        const cardInfo = document.createElement("div");
         const title = document.createElement("h2");
         const author = document.createElement("h3");
         const pages = document.createElement("p");
@@ -79,6 +80,7 @@ function showAllBooks(arr) {
         const deleteButton = document.createElement("button");
 
         card.classList.add("card");
+        cardInfo.classList.add("card-info");
         title.classList.add("title");
         author.classList.add("author");
         pages.classList.add("pages");
@@ -93,14 +95,16 @@ function showAllBooks(arr) {
         deleteButton.textContent = "Delete";
         deleteButton.setAttribute("data-id", `${book.id}`);
 
-        card.appendChild(title);
-        card.appendChild(author);
-        card.appendChild(pages);
-        card.appendChild(synopsis);
-        card.appendChild(buttonWrapper);
+        cardInfo.appendChild(title);
+        cardInfo.appendChild(author);
+        cardInfo.appendChild(pages);
+        cardInfo.appendChild(synopsis);
+        cardInfo.appendChild(buttonWrapper);
 
         buttonWrapper.appendChild(updateReadStatusButton);
         buttonWrapper.appendChild(deleteButton);
+
+        card.appendChild(cardInfo);
 
         booksContainer.appendChild(card);
 
@@ -121,7 +125,6 @@ addBookButton.addEventListener("click", (e) => {
     const author = bookAuthor.value;
     const pages = bookPages.value;
     const synopsis = bookSynopsis.value;
-    const read = readStatus;
 
     addBook(title, author, pages, synopsis, read);
     statusMessage.textContent = "Book Added";
