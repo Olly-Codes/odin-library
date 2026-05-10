@@ -1,0 +1,31 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ----- MAIN CONTAINER */
+#container {
+    width: 100%;
+    height: 100vh;
+
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+/* ----- BOOKS WRAPPER */
+
+#books-wrapper {
+    grid-column-start: 1;
+    grid-column-end: 6;
+    background-color: brown;
+}
+
+/* ----- FORM WRAPPER */
+#form-wrapper {
+    grid-column-start: 6;
+    grid-column-end: 8;
+    background-color: beige;
+}
