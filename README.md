@@ -17,5 +17,6 @@ Additionally, it usses local storage to ensure peristant storage of your books i
 - Local Storage for persistence
 
 ## What I learnt
-- Using objects to break down concepts
+- Constructors and prototypes
+- Utilizing data-* attributes as DOM data bridge: Understanding how I can link card elements back to source objects by using data-id, to enure synchronization in application state
 - Using inheritence and prototype property to extend functionality of instances 
